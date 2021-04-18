@@ -1,7 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Hydro-SDK',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'Author Flutter experiences in Typescript',
   url: 'https://hydro-sdk.github.io',
   baseUrl: '/hydro-sdk.io/',
   onBrokenLinks: 'throw',

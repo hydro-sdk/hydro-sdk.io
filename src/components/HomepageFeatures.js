@@ -4,32 +4,29 @@ import styles from './HomepageFeatures.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
+    title: 'Familiar APIs',
     png: "img/hello-world-carbon.png",
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Use the Flutter and Dart APIs you already know and love
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    png: "",
+    title: 'Easy Integration',
+    png: "img/run-component-carbon.png",
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Write parts of your app, or even your entire app with Hydro-SDK. It's all widgets
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    png: "",
+    title: 'Tests Like Any Other',
+    png: "img/test-carbon.png",
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Build your Hydro-SDK components into standalone packages. Test them like any other widget
       </>
     ),
   },

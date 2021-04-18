@@ -1,6 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
+  title: 'Hydro-SDK',
   tagline: 'Dinosaurs are cool',
   url: 'https://hydro-sdk.github.io',
   baseUrl: '/hydro-sdk.io/',
@@ -11,10 +11,10 @@ module.exports = {
   projectName: 'hydro-sdk.io', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'Hydro-SDK',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Hydro-SDK Logo',
+        src: 'img/logo.png',
       },
       items: [
         {
@@ -25,7 +25,7 @@ module.exports = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/hydro-sdk',
           label: 'GitHub',
           position: 'right',
         },
@@ -69,12 +69,12 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/hydro-sdk',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Hydro-SDK. Built with Docusaurus.`,
     },
   },
   presets: [

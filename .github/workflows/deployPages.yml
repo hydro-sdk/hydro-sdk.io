@@ -38,7 +38,7 @@ jobs:
       working-directory: hydro-sdk.io
     
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@vs
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{secrets.WAVEFORM_BOT_PAT}}
         publish_dir: ./hydro-sdk.io/build

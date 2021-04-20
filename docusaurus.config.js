@@ -3,7 +3,7 @@ module.exports = {
   title: 'Hydro-SDK',
   tagline: 'Author Flutter experiences in Typescript. No native bridge, no V8. Just Dart. From runtime to virtual machine.',
   url: 'https://hydro-sdk.github.io',
-  baseUrl: '/hydro-sdk.io/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',

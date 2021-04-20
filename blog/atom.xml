@@ -10,21 +10,21 @@
     <entry>
         <title type="html"><![CDATA[Expressing Inexpressible Constant Values]]></title>
         <id>expressing-inexpressible-constant-values</id>
-        <link href="https://hydro-sdk.github.io/hydro-sdk.io/blog/expressing-inexpressible-constant-values"/>
+        <link href="https://hydro-sdk.github.io/blog/expressing-inexpressible-constant-values"/>
         <updated>2021-04-03T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Adventures in automatically binding Dart to Typescript.]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[Closing Over Type Formals, Satisfying Type Parameters]]></title>
         <id>closing-over-type-formals-satisying-type-parameters</id>
-        <link href="https://hydro-sdk.github.io/hydro-sdk.io/blog/closing-over-type-formals-satisying-type-parameters"/>
+        <link href="https://hydro-sdk.github.io/blog/closing-over-type-formals-satisying-type-parameters"/>
         <updated>2021-02-07T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Adventures in automatically binding Dart to Typescript.]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[One Year of Hydro-SDK]]></title>
         <id>one-year-of-hydro-sdk</id>
-        <link href="https://hydro-sdk.github.io/hydro-sdk.io/blog/one-year-of-hydro-sdk"/>
+        <link href="https://hydro-sdk.github.io/blog/one-year-of-hydro-sdk"/>
         <updated>2021-01-17T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Hydro-SDK has been my passion project for the last (roughly) year. While still very pre-alpha, I thought it was about time to collect my thoughts on its past and future in one place and reflect on the journey.]]></summary>
     </entry>

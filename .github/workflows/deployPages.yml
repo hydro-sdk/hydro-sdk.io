@@ -36,6 +36,6 @@ jobs:
     - name: Deploy
       env:
         USE_SSH: false
-        GIT_USER: ${{ secrets.PUBLISH_EMAIL }}
+        GIT_USER: ${{ secrets.PUBLISH_USERNAME }}
       run: npm run deploy
       working-directory: hydro-sdk.io

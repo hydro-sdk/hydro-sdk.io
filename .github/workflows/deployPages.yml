@@ -1,0 +1,38 @@
+name: Deploy Pages
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04]
+        include:
+          - os: ubuntu-18.04
+            TARGET: linux
+
+    steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'    
+
+    - name: Configure and Clone
+      env:
+        PUBLISH_EMAIL: ${{secrets.PUBLISH_EMAIL}}
+        PUBLISH_USERNAME: ${{secrets.PUBLISH_USERNAME}}
+        WAVEFORM_BOT_PAT: ${{secrets.WAVEFORM_BOT_PAT}}
+      run: |
+        git config --global user.email "$PUBLISH_EMAIL"
+        git config --global user.name "$PUBLISH_USERNAME"
+        git clone https://$PUBLISH_USERNAME:$WAVEFORM_BOT_PAT@github.com/hydro-sdk/hydro-sdk.io.git
+
+    - name: Get packages
+      run: npm install
+      working-directory: hydro-sdk.io
+
+    - name: Deploy
+      run: npm run deploy
+      working-directory: hydro-sdk.io

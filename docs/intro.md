@@ -170,4 +170,4 @@ Start running `lib/main.dart` with the debugging tools in your favourite IDE or 
 
 Note: `RunComponent` currently only works when running in debug mode. Debugging on real-devices is currently not possible.
 
-![Action Gif](https://github.com/hydro-sdk/hydro_demo/blob/master/media/action-gif.gif)
+![Action Gif](/img/intro-action-gif.gif)

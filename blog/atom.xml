@@ -9,8 +9,8 @@
     <icon>https://hydro-sdk.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Mangling Dynamic Language Symbols, Uniquely Addressing the Atoms of Hot-Reload]]></title>
-        <id>Mangling Dynamic Language Symbols, Uniquely Addressing the Atoms of Hot-Reload</id>
-        <link href="https://hydro-sdk.github.io/blog/2021/05/20/mangling-dynamic-language-symbols"/>
+        <id>mangling-dynamic-language-symbols</id>
+        <link href="https://hydro-sdk.github.io/blog/mangling-dynamic-language-symbols"/>
         <updated>2021-05-20T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Decoupling the development time experience of Flutter from the Dart programming language.]]></summary>
     </entry>

@@ -1,9 +1,16 @@
 ---
-layout: post
+slug: mangling-dynamic-language-symbols
 title: Mangling Dynamic Language Symbols, Uniquely Addressing the Atoms of Hot-Reload
+author: Chris Gibb
+author_title: Recovering Structural Typing Enthusiast
+author_url: https://github.com/chgibb
+author_image_url: https://avatars.githubusercontent.com/u/18079458?s=400&v=4
+tags: [flutter, typescript, react-native, hot-reload]
 ---
 
 Decoupling the development time experience of Flutter from the Dart programming language.  
+
+<!--truncate-->
 
 [Hydro-SDK](https://github.com/hydro-sdk/hydro-sdk) is a project with one large, ambitious goal. "Become React Native for Flutter".  
 It aims to do that by:

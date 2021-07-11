@@ -168,6 +168,6 @@ const RunComponent(
 ## Running and Debugging
 Start running `lib/main.dart` with the debugging tools in your favourite IDE or with `flutter run`. In a terminal, run `npx hydroc run`. The `hydroc` command is the interface to the Hydro-SDK SDK-Tools. If this is the first time running `hydroc` in this directory, it will first download the required SDK-Tools for the Hydro-SDK release you depend on in your `package.json`. While `npx hydroc run` is running, changes made to `ota/index.ts` will be reflected in your running app.
 
-Note: `RunComponent` currently only works when running in debug mode. Debugging on real-devices is currently not possible.
+Note: Debugging on real-devices is currently not possible.
 
 ![Action Gif](/img/intro-action-gif.gif)

@@ -30,3 +30,6 @@ Parses a SWID configuration file and produces as output Typescript language proj
 
 ## `ts2hc`
 Takes as input a Typescript entrypoint. Produces as output a Lua bundle, debugging symbols, incremental compilation data and a `.hc` bytecode chunk. This command should not be called directly by users.
+
+## `codepush`
+Parses Hydro project descriptions, using `ts2hc` to compile Typescript chunk entrypoints. Produces `.ota` package files, signs and publishes them to the configured Registry. This command should not be called directly by users.

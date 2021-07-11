@@ -30,6 +30,15 @@ const FeatureList = [
       </>
     ),
   },
+  {
+    title: 'Codepush',
+    png: "img/codepush-carbon.png",
+    description: (
+      <>
+        Deliver updates directly to your users over the air and out of band. No app stores or long reviews
+      </>
+    ),
+  },
 ];
 
 function Feature({png, title, description}) {
@@ -50,7 +59,7 @@ export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="row">
+        <div className="row" style={{alignItems:"center"}}>
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}

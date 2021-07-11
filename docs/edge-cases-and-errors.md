@@ -3,7 +3,7 @@ sidebar_position: 3
 ---
 
 # Edge Cases and Errors  
-foo
+Some edge cases and error states that might be encountered while using Hydro-SDK
 
 ## Compile Time
 

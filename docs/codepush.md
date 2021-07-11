@@ -22,7 +22,7 @@ Click on your Github profile picture and select "Projects" to view your projects
 ### Creating a Project
 In the [previous tutorial](https://hydro-sdk.io/docs/intro), we created a project description with a project called "example-project" and a component named "counter-example". Project names are global and must be unique across all of the Registry. Component names need only be unique within a given project.
 
-When you connect your Github account with the Registry, a project with a name derived from your Github name is created (for example, `chris-gibb`). Change the project name in your local project description (in `hydro.json`) and in the use of the `RunComponent` widget (in `lib/main.dart`) to reflect the project name created for you.
+When you connect your Github account with the Registry, a project with a name derived from your Github name is created (for example, "chris-gibb"). Change the project name in your local project description (in `hydro.json`) and in the use of the `RunComponent` widget (in `lib/main.dart`) to reflect the project name created for you.
 
 Open the project in the Registry and click "New Component". Name it `counter-example`. Once the `counter-example` component has been created, you'll be presented with its private key. Click to copy the full private key and save it to a file named `key.pem`. Make sure to keep `key.pem` a secret and don't lose it. This key will be used to sign and publish releases of `counter-example`.
 

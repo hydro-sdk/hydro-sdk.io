@@ -12,7 +12,7 @@ Codepush for Flutter
 
 <!--truncate-->
 
-[Hydro-SDK](https://github.com/hydro-sdk/hydro-sdk) is a project with one large, ambitious goal. "Become React Native for Flutter".  
+[Hydro-SDK](https://github.com/hydro-sdk/hydro-sdk) is a software development kit (SDK) enabling Flutter developers to write portions of their app (or their entire app) using Typescript. It is a project with one large, ambitious goal. "Become React Native for Flutter".  
 It aims to do that by:
 1. Decoupling the API surface of Flutter from  the Dart programming language.
 2. Decoupling the development time experience of Flutter from the Dart programming language.

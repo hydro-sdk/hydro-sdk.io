@@ -35,7 +35,7 @@ Each "runtime managed class declaration" provides overrides for every method, ge
 Unlike a "virtual machine managed class", "runtime managed classes" Lua table redirections are given in terms `_dart_method` where `method` is the name of the method from `T` being bound. In order to make the given projection natural for consumers, language projections are expected to provide `method` declarations that redirect by default to `_dart_method`. This allows target language consumers to extend projected classes and provide method overrides implemented in terms of CFR.
 
 ## Intermediate Representation (IR)
-SWID maintains its own IR. [SWID IR](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/ir) closely mirrors a Dart abstract syntax tree (AST). The important caveat is that SWID IR does not fully represent the semantics of the Dart language. For instance, getters, setters and operator overloads are not specially represented in SWID IR. SWID IR also does not explicitly represent Dart libraries or packages. 
+SWID maintains its own IR. [SWID IR](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/ir) closely mirrors a Dart abstract syntax tree (AST). The important caveat is that SWID IR does not fully represent the semantics of the Dart language. Getters, setters and operator overloads are not specially represented in SWID IR. SWID IR also does not explicitly represent Dart libraries or packages. 
 
 SWID IR is the primitive upon which all analyses, transformations and code generation are performed.
 

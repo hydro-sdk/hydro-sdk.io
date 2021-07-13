@@ -10,6 +10,10 @@ module.exports = {
   organizationName: 'hydro-sdk', // Usually your GitHub org/user name.
   projectName: 'hydro-sdk.io', // Usually your repo name.
   themeConfig: {
+    colorMode:{
+      defaultMode: "dark",
+      disableSwitch: true,
+    },
     navbar: {
       title: 'Hydro-SDK',
       logo: {
@@ -18,10 +22,21 @@ module.exports = {
       },
       items: [
         {
-          type: 'doc',
           docId: 'intro',
+          to: "/docs/intro",
           position: 'left',
-          label: 'Tutorial',
+          label: 'Getting Started',
+        },
+        {
+          docId: 'codepush',
+          to: "/docs/codepush",
+          position: 'left',
+          label: 'Codepush',
+        },
+        {
+          to: "https://registry.hydro-sdk.io",
+          position: 'left',
+          label: 'Registry',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -38,8 +53,12 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Getting Started',
               to: '/docs/intro',
+            },
+            {
+              label: 'Codepush',
+              to: '/docs/codepush',
             },
           ],
         },

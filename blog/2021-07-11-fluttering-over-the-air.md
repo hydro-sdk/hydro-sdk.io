@@ -5,7 +5,10 @@ author: Chris Gibb
 author_title: Recovering Structural Typing Enthusiast
 author_url: https://github.com/chgibb
 author_image_url: https://avatars.githubusercontent.com/u/18079458?s=400&v=4
-tags: [flutter, typescript, react-native, hot-reload,codepush]
+tags: [flutter, typescript, react-native, hot-reload, codepush]
+keywords: [flutter, typescript, react-native, hot-reload, codepush]
+description: Codepush for Flutter
+draft: true
 ---
 
 Codepush for Flutter

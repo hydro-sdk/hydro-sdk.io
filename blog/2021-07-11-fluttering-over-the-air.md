@@ -11,7 +11,7 @@ description: Codepush for Flutter
 draft: true
 ---
 
-Codepush for Flutter
+Announcing Hydro-SDK `0.0.1-alpha.0` and Codepush for Flutter
 
 <!--truncate-->
 
@@ -31,7 +31,34 @@ Hydro-SDK builds and manages code in terms of projects. Projects consist of comp
 
 This is great when developing locally using Hydro-SDK. What if your entire app isn't written with Hydro-SDK? What about developers writing Dart code in an app where Hydro-SDK is only a small part? Should they have to worry about having `hydroc run` running? What about end users of your app? This is where the Hydro-SDK Registry comes in.
 
-The Hydro-SDK Registry is available at https://registry.hydro-sdk.io As the name implies, Registry is a package registry for `.ota` (over-the-air) package files produced for Hydro-SDK components. In cases when `hydroc run` is not available during local development or when your app is running in profile or release mode, the `RunComponent` widget will look to the Registry for the latest available package for a given component.
+The Hydro-SDK Registry is available at https://registry.hydro-sdk.io As the name implies, Registry is a package registry for [`.ota` (over-the-air) package files](http://localhost:3000/docs/design-documents/ota) produced for Hydro-SDK components. In cases when `hydroc run` is not available during local development or when your app is running in profile or release mode, the `RunComponent` widget will look to the Registry for the latest available package for a given component.
 
 ## Codepush
 Packages can be published to the Registry using the new `hydroc codepush` command. All packages are signed using the private key generated when you create the corresponding component on the Registry. Packages can be verified at runtime using the generated public key.
+
+Registry is completely free and connects with your existing Github account. See the [codepush tutorial](http://localhost:3000/docs/codepush).
+
+## Service Status
+Like Hydro-SDK itself, Registry is still in an incredibly early stage. We are looking for members of the community to try Hydro-SDK, Registry and codepush and provide their feedback and experience. Consequently, there is no official service level agreement (SLA) at this time. Please reach out on [Github issues](https://github.com/hydro-sdk/hydro-sdk/issues), [Github discussions](https://github.com/hydro-sdk/hydro-sdk/discussions), [Discord](https://discord.com/invite/DuM2vkUSNr), or email us at "hello (at) hydro-sdk.io".
+
+## Licensing
+For a large part of Hydro-SDKs existence, it has been licensed under the GNU Affero General Public License Version 3 (or AGPL-3). This was done in order to make it harder for companies to take the open source Hydro-SDK and monetize it by providing value added services (like codepush) around it. Starting from Hydro-SDK `0.0.1-alpha.0` and `INSERT NIGHTLY`, Hydro-SDK will be licensed under the far more permissive MIT license. If you're a business or other entity for which the MIT license does not meet your needs, please reach out at "hello (at) hydro-sdk.io".
+
+## Future Work
+### State Management
+The only state management technique available to code written with Hydro-SDK is `setState`. There is a hand-written port of [`package:scoped_model` in the Hydro-SDK source distribution](https://github.com/hydro-sdk/hydro-sdk/tree/master/runtime/scopedModel) though it is not quite polished enough to recommend it for use in any official tutorials or guides.
+
+### API Availability
+The APIs currently available from Hydro-SDK can be viewed on https://hydro-sdk.github.io/hydro-sdk/ It is quite limited in comparison to what `dart:*` standard libraries and `package:flutter` have to offer. Not to mention packages from `pub.dev`. Hydro-SDKs [SWID project](http://localhost:3000/docs/design-documents/swid) aims to build tooling to automatically make public APIs from Dart packages available to use from Hydro-SDK. SWID is still in its infancy. However, classes from Flutter like [Material icons](https://github.com/hydro-sdk/hydro-sdk/blob/master/runtime/flutter/material/icons.ts) and [Cupertino icons](https://github.com/hydro-sdk/hydro-sdk/blob/master/runtime/flutter/cupertino/cupertinoIcons.ts) have been brought to Typescript and Hydro-SDK users thanks to SWID. The entire [`dart:typed_data` library](https://github.com/hydro-sdk/hydro-sdk/tree/master/runtime/dart/typed_data), and extremely complicated classes like [`Iterable` from `dart:core`](https://github.com/hydro-sdk/hydro-sdk/blob/master/runtime/dart/core/iterable.ts) have been made available thanks to SWID. The code that SWID produces is correct enough to pass test cases from [Dart's library conformance test suite (CO19)](https://github.com/dart-lang/co19) [that have been ported into Typescript](https://github.com/hydro-sdk/hydro-sdk/tree/master/test/co19/core/iterable).
+
+Hydro-SDK aims to become a toolkit to extend Flutter not just to Typescript but to other languages like Haxe and C#. SWID is the cornerstone of this vision. Making SWID smart enough to handle `dart:ui` is next and can be tracked [here](https://github.com/hydro-sdk/hydro-sdk/projects/17). All work related to SWID can be tracked [here](https://github.com/hydro-sdk/hydro-sdk/projects/5).
+
+### Performance
+Hydro-SDKs build system takes in Typescript code and produces Lua bytecode to be run on the common Flutter runtime (CFR) virtual machine on a host Flutter app. Other than stripping debug symbols when building for release mode (which commands like `hydroc codepush` do automatically), no ahead of time optimizations are done. 
+
+There is a lot of low hanging fruit to be picked in this area. Lua bundle collapsing (in a similar manner to the optimization performed by [Browserify](https://github.com/browserify/bundle-collapser)) in particular could realise some immediate size savings in terms of generated bytecode. 
+
+The most impactful optimization that can be done at the Typescript level is tree-shaking. Bytecode produced by Hydro-SDK tends to be dominated by [Material icons](https://github.com/hydro-sdk/hydro-sdk/blob/master/runtime/flutter/material/icons.ts), [Cupertino icons](https://github.com/hydro-sdk/hydro-sdk/blob/master/runtime/flutter/cupertino/cupertinoIcons.ts), [Material colors](https://github.com/hydro-sdk/hydro-sdk/blob/master/runtime/flutter/material/colors.ts) and the like. Tree-shaking could remove this unneccessary overhead in bytecode size.
+
+[Wang](https://www.ideals.illinois.edu/bitstream/handle/2142/78638/WANG-DISSERTATION-2015.pdf?sequence=1&isAllowed=y), [Williams et al](https://sites.cs.ucsb.edu/~ckrintz/papers/TCD-CS-2009-37.pdf
+) and [Kawahara](https://nymphium.github.io/pdf/opeth_report.pdf) have all performed extensive research into applying traditional ahead of time optimization techniques to Lua bytecode. Others like [Shroder](https://www.complang.tuwien.ac.at/anton/praktika-fertig/schroeder/thesis.pdf) have explored runtime optimizations. In the future, finding a combination of these approaches and techniques will allow users of Hydro-SDK to deliver the smallest possible bytecode updates to their users

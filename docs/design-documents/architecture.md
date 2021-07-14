@@ -47,4 +47,4 @@ Compiling Typescript to Lua source code, managing incremental compilations and g
 `build-project`, `run-project` and `codepush` SDK-tools all need to be able build and package projects for different purposes. Project building is managed by the [`*Builder` family of classes](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/build-project) and shared across SDK-tools.
 
 ### Automatic Language Projection (ALP)
-Hydro-SDK aims to differentiate itself most critically by allowing rich interop with Dart packages. All tooling related to ALP is managed by [SWID](http://localhost:3000/docs/design-documents/swid).
+Hydro-SDK aims to differentiate itself most critically by allowing rich interop with Dart packages. All tooling related to ALP is managed by [SWID](https://hydro-sdk.io/docs/design-documents/swid).

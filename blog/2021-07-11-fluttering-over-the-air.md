@@ -42,9 +42,9 @@ Registry is completely free and connects with your existing Github account. See 
 Like Hydro-SDK itself, Registry is still in an incredibly early stage. We are looking for members of the community to try Hydro-SDK, Registry and codepush and provide their feedback and experience. Consequently, there is no official service level agreement (SLA) at this time. Please reach out on [Github issues](https://github.com/hydro-sdk/hydro-sdk/issues), [Github discussions](https://github.com/hydro-sdk/hydro-sdk/discussions), [Discord](https://discord.com/invite/DuM2vkUSNr), or email us at "hello (at) hydro-sdk.io".
 
 ## Licensing
-For a large part of Hydro-SDKs existence, it has been licensed under the GNU Affero General Public License Version 3 (or AGPL-3). This was done in order to make it harder for companies to take the open source Hydro-SDK and monetize it by providing value added services (like codepush) around it. Starting from Hydro-SDK `0.0.1-alpha.0` and `INSERT NIGHTLY`, Hydro-SDK will be licensed under the far more permissive MIT license. If you're a business or other entity for which the MIT license does not meet your needs, please reach out at "hello (at) hydro-sdk.io".
+For a large part of Hydro-SDKs existence, it has been licensed under the GNU Affero General Public License Version 3 (or AGPL-3). This was done in order to make it harder for companies to take the open-source Hydro-SDK and monetize it by providing value added services (like codepush) around it. Starting from Hydro-SDK `0.0.1-alpha.0` and `INSERT NIGHTLY`, Hydro-SDK will be licensed under the far more permissive MIT license. If you're a business or other entity for which the MIT license does not meet your needs, please reach out at "hello (at) hydro-sdk.io".
 
-## Future Work
+## Caveats and Future Work
 ### State Management
 The only state management technique available to code written with Hydro-SDK is `setState`. There is a hand-written port of [`package:scoped_model` in the Hydro-SDK source distribution](https://github.com/hydro-sdk/hydro-sdk/tree/master/runtime/scopedModel) though it is not quite polished enough to recommend it for use in any official tutorials or guides.
 
@@ -62,3 +62,18 @@ The most impactful optimization that can be done at the Typescript level is tree
 
 [Wang](https://www.ideals.illinois.edu/bitstream/handle/2142/78638/WANG-DISSERTATION-2015.pdf?sequence=1&isAllowed=y), [Williams et al](https://sites.cs.ucsb.edu/~ckrintz/papers/TCD-CS-2009-37.pdf
 ) and [Kawahara](https://nymphium.github.io/pdf/opeth_report.pdf) have all performed extensive research into applying traditional ahead of time optimization techniques to Lua bytecode. Others like [Shroder](https://www.complang.tuwien.ac.at/anton/praktika-fertig/schroeder/thesis.pdf) have explored runtime optimizations. In the future, finding a combination of these approaches and techniques will allow users of Hydro-SDK to deliver the smallest possible bytecode updates to their users
+
+### Compiling to Dart
+Tooling exists to compile Lua bytecode into Dart code that can then be compiled with a host app and recognized by CFR at runtime. This capability is tested on every commit as part of Hydro-SDKs CI in both [debug](https://github.com/hydro-sdk/hydro-sdk/actions/workflows/debug-ts-aot-integrationTests.yml) and [release](https://github.com/hydro-sdk/hydro-sdk/actions/workflows/release-ts-aot-integrationTests.yml) modes. This feature holds a lot of promise at improving the performance of CPU bound operations that would otherwise be performed in bytecode. The benchmarks, tooling and other polish required to make this feature available where not ready for the `0.0.1-alpha.0` release.
+
+## Monetization
+[Public Domain Publishing](https://github.com/publicdomaincompany) has been a generous sponsor of Hydro-SDK. Monetization goals include having enough recurring income to allow the primary developer to work full time on Hydro-SDK and to hire or otherwise compensate other members of the community who contribute to Hydro-SDK.
+
+### Sponsorhips
+Hydro-SDK can be sponsored on [Github Sponsors](https://github.com/sponsors/hydro-sdk) and [Open Collective](https://opencollective.com/hydro-sdk).
+
+### Consulting and Services
+If you're a business looking for consulting or other services related to Hydro-SDK, email us at "hello (at) hydro-sdk.io".
+
+## Next Alpha Release
+Very preliminary planning has begun for `0.0.1-alpha.1`. This work can be tracked [here](https://github.com/orgs/hydro-sdk/projects/4). Please reach out on [Github issues](https://github.com/hydro-sdk/hydro-sdk/issues), [Github discussions](https://github.com/hydro-sdk/hydro-sdk/discussions), [Discord](https://discord.com/invite/DuM2vkUSNr), or email us at "hello (at) hydro-sdk.io" to help drive the direction of Hydro-SDK. Code contributions and pull requests are encouraged and accepted.

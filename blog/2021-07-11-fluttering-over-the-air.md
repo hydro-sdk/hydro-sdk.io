@@ -22,11 +22,10 @@ It aims to do that by:
 3. Providing first-class support for over-the-air distribution of code.
 4. Providing an ecosystem of packages from `pub.dev`, automatically projected to supported languages and published to other package systems.
 
-I wrote previously about the past and future of [Hydro-SDK](https://github.com/hydro-sdk/hydro-sdk) [here](https://chgibb.github.io/one-year-of-hydro-sdk/). 
-
-In this article I want to announce and describe the realization of goal 3 above and pontificate about the future.
+In this article I want to announce and describe the realization of goal 3.
 
 ## Registry
+![Registry Diagram](/img/hydro-registry-diagram.png)
 Hydro-SDK builds and manages code in terms of projects. Projects consist of components. Hydro-SDK content is embedded into a host app using the `RunComponent` widget. While developing with Hydro-SDK locally, the `RunComponent` widget and `hydroc run` command work together to rebuild and hot-reload your code as you make changes. See the [getting started tutorial](https://hydro-sdk.io/docs/intro) for a full description.
 
 This is great when developing locally using Hydro-SDK. What if your entire app isn't written with Hydro-SDK? What about developers writing Dart code in an app where Hydro-SDK is only a small part? Should they have to worry about having `hydroc run` running? What about end users of your app? This is where the Hydro-SDK Registry comes in.
@@ -48,7 +47,7 @@ Registry: INSERT LINK
 Like Hydro-SDK itself, Registry is still in an incredibly early stage. We are looking for members of the community to try Hydro-SDK, Registry and codepush and provide their feedback and experience. Consequently, there is no official service level agreement (SLA) at this time. Please reach out on [Github issues](https://github.com/hydro-sdk/hydro-sdk/issues), [Github discussions](https://github.com/hydro-sdk/hydro-sdk/discussions), [Discord](https://discord.com/invite/DuM2vkUSNr), or email us at "hello (at) hydro-sdk.io".
 
 ## Licensing
-For a large part of Hydro-SDKs existence, it has been licensed under the GNU Affero General Public License Version 3 (or AGPL-3). This was done in order to make it harder for companies to take the open-source Hydro-SDK and monetize it by providing value added services (like codepush) around it. Starting from Hydro-SDK `0.0.1-alpha.0` and `INSERT NIGHTLY`, Hydro-SDK will be licensed under the far more permissive MIT license. If you're a business or other entity for which the MIT license does not meet your needs, please reach out at "hello (at) hydro-sdk.io".
+For a large part of Hydro-SDKs existence, it has been licensed under the GNU Affero General Public License Version 3 (AGPL-3). This was done in order to make it harder for companies to take the open-source Hydro-SDK and monetize it by providing value added services (like codepush) around it. Starting from Hydro-SDK `0.0.1-alpha.0` and `INSERT NIGHTLY`, Hydro-SDK will be licensed under the far more permissive MIT license. If you're a business or other entity for which the MIT license does not meet your needs, please reach out at "hello (at) hydro-sdk.io".
 
 ## Caveats and Future Work
 ### State Management

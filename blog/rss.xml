@@ -4,9 +4,16 @@
         <title>Hydro-SDK Blog</title>
         <link>https://hydro-sdk.github.io/blog</link>
         <description>Hydro-SDK Blog</description>
-        <lastBuildDate>Thu, 20 May 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 16 Jul 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[Fluttering Over the Air]]></title>
+            <link>https://hydro-sdk.github.io/blog/fluttering-over-the-air</link>
+            <guid>fluttering-over-the-air</guid>
+            <pubDate>Fri, 16 Jul 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Codepush for Flutter]]></description>
+        </item>
         <item>
             <title><![CDATA[Mangling Dynamic Language Symbols, Uniquely Addressing the Atoms of Hot-Reload]]></title>
             <link>https://hydro-sdk.github.io/blog/mangling-dynamic-language-symbols</link>

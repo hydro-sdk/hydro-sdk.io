@@ -8,12 +8,13 @@ author_image_url: https://avatars.githubusercontent.com/u/18079458?s=400&v=4
 tags: [flutter, typescript, react-native, hot-reload, codepush]
 keywords: [flutter, typescript, react-native, hot-reload, codepush]
 description: Codepush for Flutter
-draft: true
 ---
 
 Announcing Hydro-SDK `0.0.1-alpha.0` and Codepush for Flutter
 
 <!--truncate-->
+
+[Flutter](https://flutter.dev/) is Google's UI toolkit for building beautiful, natively compiled applications for mobile, web, desktop and embedded devices from a single codebase.
 
 [Hydro-SDK](https://github.com/hydro-sdk/hydro-sdk) is a software development kit (SDK) enabling Flutter developers to write portions of their app (or their entire app) using Typescript. It is a project with one large, ambitious goal. "Become React Native for Flutter".  
 It aims to do that by:
@@ -42,16 +43,15 @@ Packages can be published to the Registry using the new `hydroc codepush` comman
 Registry is completely free and connects with your existing Github account. See the [codepush tutorial](https://hydro-sdk.io/docs/codepush).
 
 ## App Store Compliance
-There is endless discussion on every corner of the internet dissecting and debating App Store rules and guidelines. The [Hydro-SDK counter app showcase](https://github.com/hydro-sdk/counter-app) has been successfully published to both Google Play and Apple's App Store.
-Google Play: https://play.google.com/store/apps/details?id=com.hydro_sdk.counter_app
-App Store: INSERT LINK
-Registry: INSERT LINK
+There is endless discussion on every corner of the internet dissecting and debating App Store rules and guidelines. The [Hydro-SDK counter app showcase](https://github.com/hydro-sdk/counter-app) has been successfully published to Google Play. An App Store version is in progress.  
+Google Play: https://play.google.com/store/apps/details?id=com.hydro_sdk.counter_app  
+Registry: https://registry.hydro-sdk.io/#/component/63bbc0f5-0080-439c-999e-2323462beede
 
 ## Service Status
 Like Hydro-SDK itself, Registry is still in an incredibly early stage. We are looking for members of the community to try Hydro-SDK, Registry and codepush and provide their feedback and experience. Consequently, there is no official service level agreement (SLA) at this time. Please reach out on [Github issues](https://github.com/hydro-sdk/hydro-sdk/issues), [Github discussions](https://github.com/hydro-sdk/hydro-sdk/discussions), [Discord](https://discord.com/invite/DuM2vkUSNr), or email us at "hello (at) hydro-sdk.io".
 
 ## Licensing
-For a large part of Hydro-SDKs existence, it has been licensed under the GNU Affero General Public License Version 3 (AGPL-3). This was done in order to make it harder for companies to take the open-source Hydro-SDK and monetize it by providing value added services (like codepush) around it. Starting from Hydro-SDK `0.0.1-alpha.0` and `INSERT NIGHTLY`, Hydro-SDK will be licensed under the far more permissive MIT license. If you're a business or other entity for which the MIT license does not meet your needs, please reach out at "hello (at) hydro-sdk.io".
+For a large part of Hydro-SDKs existence, it has been licensed under the GNU Affero General Public License Version 3 (AGPL-3). This was done in order to make it harder for companies to take the open-source Hydro-SDK and monetize it by providing value added services (like codepush) around it. Starting from Hydro-SDK `0.0.1-alpha.0` and `0.0.1-nightly.289`, Hydro-SDK will be licensed under the far more permissive MIT license. If you're a business or other entity for which the MIT license does not meet your needs, please reach out at "hello (at) hydro-sdk.io".
 
 ## Caveats and Future Work
 ### State Management

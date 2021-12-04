@@ -4,9 +4,16 @@
         <title>Hydro-SDK Blog</title>
         <link>https://hydro-sdk.github.io/blog</link>
         <description>Hydro-SDK Blog</description>
-        <lastBuildDate>Fri, 16 Jul 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 04 Dec 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[DartUP 2021]]></title>
+            <link>https://hydro-sdk.github.io/blog/dartup-2021</link>
+            <guid>dartup-2021</guid>
+            <pubDate>Sat, 04 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Notes and Resources for the DartUP 2021 talk Fluttering Over the Air]]></description>
+        </item>
         <item>
             <title><![CDATA[Fluttering Over the Air]]></title>
             <link>https://hydro-sdk.github.io/blog/fluttering-over-the-air</link>

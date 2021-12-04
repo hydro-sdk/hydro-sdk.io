@@ -2,11 +2,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://hydro-sdk.github.io/blog</id>
     <title>Hydro-SDK Blog</title>
-    <updated>2021-07-16T00:00:00.000Z</updated>
+    <updated>2021-12-04T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://hydro-sdk.github.io/blog"/>
     <subtitle>Hydro-SDK Blog</subtitle>
     <icon>https://hydro-sdk.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[DartUP 2021]]></title>
+        <id>dartup-2021</id>
+        <link href="https://hydro-sdk.github.io/blog/dartup-2021"/>
+        <updated>2021-12-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Notes and Resources for the DartUP 2021 talk Fluttering Over the Air]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Fluttering Over the Air]]></title>
         <id>fluttering-over-the-air</id>

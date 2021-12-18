@@ -10,7 +10,7 @@ https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid
 Provide a tool to automatically produce code to bind a given Dart package to CFR and provide an interface that can be consumed from supported programming languages.
 
 ## Background
-In the past, bindings for classes in `package:flutter` and `dart:*` have been written by hand. These hand written bindings usually expose the smallest surface area possible to satisfy the intended use case. i.e. being able to call `new AppBar` from Typescript rather than being able to also extend and override `AppBar`, or to access properties and methods on a given `AppBar`. Changes in the bound API need to be hand updated as the original package changes.
+In the past, bindings for classes in `package:flutter` and `dart:*` have been written by hand. These hand written bindings usually expose the smallest surface area possible to satisfy the intended use case. i.e. being able to call `new AppBar` from TypeScript rather than being able to also extend and override `AppBar`, or to access properties and methods on a given `AppBar`. Changes in the bound API need to be hand updated as the original package changes.
 
 Taking a given piece of code in a given source language, binding it to (making it callable from) and projecting it (making APIs that capture the intent of the original language in the target language) to one or more target languages is a well explored space. SWID takes great inspiration from projects like the [Simplified Wrapper and Interface Generator (SWIG) project](http://www.swig.org/) and [Microsoft's Xlang](https://github.com/microsoft/xlang),
 
@@ -51,4 +51,4 @@ SWID backends are responsible for producing translation units which will be writ
 
 SWID's [Dart backend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/backend/dart) is responsible for producing Dart code that can be loaded into CFR to provide bindings for a given Dart package.
 
-SWID's [Typescript backend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/backend/ts) is responsible for producing Typescript code that accurately projects the given Dart package and works with the associated Dart binding code to allow consumers to access, allocate and extend classes from the given Dart package.
+SWID's [TypeScript backend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/backend/ts) is responsible for producing TypeScript code that accurately projects the given Dart package and works with the associated Dart binding code to allow consumers to access, allocate and extend classes from the given Dart package.

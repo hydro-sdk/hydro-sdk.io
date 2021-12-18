@@ -8,7 +8,7 @@ author_image_url: https://avatars.githubusercontent.com/u/18079458?s=400&v=4
 tags: [flutter, typescript, react-native]
 ---
 
-Adventures in automatically binding Dart to Typescript.
+Adventures in automatically binding Dart to TypeScript.
 
 <!--truncate-->
 
@@ -23,9 +23,9 @@ It aims to do that by:
 
 I wrote previously about the past and future of [Hydro-SDK](https://github.com/hydro-sdk/hydro-sdk) [here](https://chgibb.github.io/one-year-of-hydro-sdk/). 
 
-Structured Wrapper and Interface generator for Dart (SWID) is a component of Hydro-SDK supporting goals 1 and 4. SWID takes as input a Dart package (like `package:flutter`) and produces as output Typescript files representing the input Dart package's public API and Dart files to allow for gluing Typescript code written against that API together into a host app that can be run on Hydro-SDK's Common Flutter Runtime (CFR). This process is referred to as "language projection". 
+Structured Wrapper and Interface generator for Dart (SWID) is a component of Hydro-SDK supporting goals 1 and 4. SWID takes as input a Dart package (like `package:flutter`) and produces as output TypeScript files representing the input Dart package's public API and Dart files to allow for gluing TypeScript code written against that API together into a host app that can be run on Hydro-SDK's Common Flutter Runtime (CFR). This process is referred to as "language projection". 
 
-Representing Dart constructs in Typescript has come with many challenges. One recently encountered is how to express constant values which are composed of private symbols. 
+Representing Dart constructs in TypeScript has come with many challenges. One recently encountered is how to express constant values which are composed of private symbols. 
 
 Every Flutter programmer should be familiar with the concept of `const` in Dart. It’s used perhaps most prolifically in Flutter’s Material and Cupertino design icons APIs. For instance, the `Icons` class in Flutter’s `material` library contains thousands of static fields that appear like the following which represents the "directions boat" material design icon: 
 ```dart
@@ -54,7 +54,7 @@ export class Icons {
 
 SWID will perform a simple syntax transform for the `Icons` class and `directions_boat` field while making sure the translation unit (`flutter/material/icons.ts`) imports required symbols (in this case, simply `IconData`). 
 
-The only area of language projection that SWID aims to describe one-to-one between Dart and Typescript is `const` values. This is done to free host applications from having to compile every possible constant value that guest code might want to access. This approach works great for constant values that consist simply of public symbols (like `IconData` above), and primitive values.
+The only area of language projection that SWID aims to describe one-to-one between Dart and TypeScript is `const` values. This is done to free host applications from having to compile every possible constant value that guest code might want to access. This approach works great for constant values that consist simply of public symbols (like `IconData` above), and primitive values.
 
 This becomes trickier however when fields consist of private symbols. For instance, the `Rect` class from `dart:ui` has some static constant fields which are declared as the following:
 ```dart
@@ -66,7 +66,7 @@ class Rect {
 }
 ```
 
-The `zero` field references a public static method, so it is fine to perform a simple syntax transform. At first glance, the `largest` field appears impossible to express in Typescript. There is no way to expose the `_giantScalar` symbol in a way that it can be accessed from Typescript. 
+The `zero` field references a public static method, so it is fine to perform a simple syntax transform. At first glance, the `largest` field appears impossible to express in TypeScript. There is no way to expose the `_giantScalar` symbol in a way that it can be accessed from TypeScript. 
 
 SWID has enough semantic understanding to understand that the reference to `_giantScalar` from `largest` is not only a field on `Rect` but that it's also just a primitive. Therefore, both are safe to emit.
 
@@ -116,9 +116,9 @@ export class Endian {
 }
 ```
 
-The `declare` block is what SWID calls a "virtual machine declaration". This is a typed description of the environment that the code in the given translation unit expects. "virtual machine declarations" in SWID's Typescript backend and their associated "namespace symbol declarations" that fulfill their expectations in SWID's Dart backend are how SWID expresses API bindings not just for "inexpressible" constant values but for all methods and fields. This binding system will be the subject of a future blog post.
+The `declare` block is what SWID calls a "virtual machine declaration". This is a typed description of the environment that the code in the given translation unit expects. "virtual machine declarations" in SWID's TypeScript backend and their associated "namespace symbol declarations" that fulfill their expectations in SWID's Dart backend are how SWID expresses API bindings not just for "inexpressible" constant values but for all methods and fields. This binding system will be the subject of a future blog post.
 
 As seen above, `big` and `little` are expressed as calls to their associated declarations. Unfortunately, this scheme prevents the host application from ever being able to tree-shake away the definitions of `big` and `little` but still allows guest code access to these fields.
 
-Hopefully this problem and its solution was as fun to read about as it was to discover and solve. Hydro-SDK is an endless fractal of problems like this. Hopefully I’ll be able to make “Adventures in automatically binding Dart to Typescript” a continuing series of posts.
+Hopefully this problem and its solution was as fun to read about as it was to discover and solve. Hydro-SDK is an endless fractal of problems like this. Hopefully I’ll be able to make “Adventures in automatically binding Dart to TypeScript” a continuing series of posts.
 

@@ -39,8 +39,8 @@ npm install
 flutter pub get
 ```
 
-## Adding Typescript Code
-By convention, code intended to be run by Hydro-SDK is placed into a directory named `ota` in the root of your project. The following is a Typescript version of the Flutter counter showcase. Place it into a file named `ota/index.ts`.
+## Adding TypeScript Code
+By convention, code intended to be run by Hydro-SDK is placed into a directory named `ota` in the root of your project. The following is a TypeScript version of the Flutter counter showcase. Place it into a file named `ota/index.ts`.
 ```typescript
 //Make sure to import from /index specifically if using barell imports.
 //The compiler won't resolve /index by itself

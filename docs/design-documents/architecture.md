@@ -41,7 +41,7 @@ Each layer of Hydro-SDK should be small and as generic as possible. Where cross 
 Hydro-SDK aims to have as small of a runtime footprint as possible. Hydro-SDKs runtime system, [common Flutter runtime (CFR)](https://hydro-sdk.io/docs/design-documents/cfr) is a subset of a Lua 5.2 environment. It provides an interpreter for Lua 5.2 bytecode, a set of Lua 5.2 intrinsics and a binding system for clean and powerful interop with Dart code. Poviding a full Lua parser and runtime compiler is out of scope. All complexity related to compiling and packaging code is left to other layers. This is similar to the philosophy of [the Hermes Engine](https://hermesengine.dev/).
 
 ### Compile Time
-Compiling Typescript to Lua source code, managing incremental compilations and generating debugging symbols is the responsibility of the `ts2hc` SDK-tool. Compiling Lua source code to bytecode is separately handled by the `luac52` SDK-tool.
+Compiling TypeScript to Lua source code, managing incremental compilations and generating debugging symbols is the responsibility of the `ts2hc` SDK-tool. Compiling Lua source code to bytecode is separately handled by the `luac52` SDK-tool.
 
 ### Project Build Time
 `build-project`, `run-project` and `codepush` SDK-tools all need to be able build and package projects for different purposes. Project building is managed by the [`*Builder` family of classes](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/build-project) and shared across SDK-tools.

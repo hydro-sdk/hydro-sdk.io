@@ -21,12 +21,12 @@ It aims to do that by:
 
 I wrote previously about the past and future of [Hydro-SDK](https://github.com/hydro-sdk/hydro-sdk) [here](https://chgibb.github.io/one-year-of-hydro-sdk/). 
 
-In this article I want to delve into some of the gritty details of how Hydro-SDK compiles, manages and hot-reloads Typescript code.
+In this article I want to delve into some of the gritty details of how Hydro-SDK compiles, manages and hot-reloads TypeScript code.
 
-`ts2hc` is a command line program distributed as part of each Hydro-SDK release. `ts2hc`'s job is to turn Typescript code into bytecode and debug symbols. Users generally don't interact with it directly but rather indirectly through commands like `hydroc build` and `hydroc run`.
+`ts2hc` is a command line program distributed as part of each Hydro-SDK release. `ts2hc`'s job is to turn TypeScript code into bytecode and debug symbols. Users generally don't interact with it directly but rather indirectly through commands like `hydroc build` and `hydroc run`.
 
 ## Build Time
-Typescript is lowered into Lua by leveraging the excellent [Typescript to Lua (TSTL) library](https://github.com/TypeScriptToLua/TypeScriptToLua). Consider the following excerpt from the [Counter-App showcase](https://github.com/hydro-sdk/counter-app):
+TypeScript is lowered into Lua by leveraging the excellent [TypeScript to Lua (TSTL) library](https://github.com/TypeScriptToLua/TypeScriptToLua). Consider the following excerpt from the [Counter-App showcase](https://github.com/hydro-sdk/counter-app):
 ```typescript
 //counter-app/ota/lib/counterApp.ts
 import {
@@ -108,9 +108,9 @@ package.preload["ota.lib.counterApp"] = (function (...)
 end)
 ```
 
-The lowered and bundled Lua still somewhat resembles the input Typescript. Typescript ES6 modules are wrapped into Lua immediately invoked function expressions (IIFE), assigned string keys in the `package.preload` map and their `exports` made available by `require`ing them. This pattern should be familiar to anyone who's hacked on Javascript bundlers/module resolvers like Browserify or Rollup.
+The lowered and bundled Lua still somewhat resembles the input TypeScript. TypeScript ES6 modules are wrapped into Lua immediately invoked function expressions (IIFE), assigned string keys in the `package.preload` map and their `exports` made available by `require`ing them. This pattern should be familiar to anyone who's hacked on Javascript bundlers/module resolvers like Browserify or Rollup.
 
-Lua lacks builtin object-oriented programming (OOP) facilities (whether prototypal or otherwise). Typescript language features which don't quite map one-to-one with Lua are shimmed using `__TS_*` functions made available through the `lualib_bundle` module (which `ts2hc` injects during bundling). Above, the `CounterApp` class is lowered into a series of calls to `__TS__Class` and `__TS__ClassExtends`, followed by placing its declared methods on its `prototype`.
+Lua lacks builtin object-oriented programming (OOP) facilities (whether prototypal or otherwise). TypeScript language features which don't quite map one-to-one with Lua are shimmed using `__TS_*` functions made available through the `lualib_bundle` module (which `ts2hc` injects during bundling). Above, the `CounterApp` class is lowered into a series of calls to `__TS__Class` and `__TS__ClassExtends`, followed by placing its declared methods on its `prototype`.
 
 The Lua bundle output by `ts2hc` will eventually be turned into bytecode by the PUC-RIO Lua 5.2 compiler, distributed under the name `luac52` by Hydro-SDK. The `build` method on the `CounterApp` class above would compile into something like the following:
 ```
@@ -141,7 +141,7 @@ corresponding to the constructor and `build` method declarations of the original
 CounterApp.prototype.____constructor::self
 CounterApp.prototype.build::self
 ```
-That is not quite enough information to uniquely identify a function however. `ts2hc` further considers the hash of the Typescript filename, and a disambiguation index suffix to resolve mangled name conflicts by declaration order resulting in the following: 
+That is not quite enough information to uniquely identify a function however. `ts2hc` further considers the hash of the TypeScript filename, and a disambiguation index suffix to resolve mangled name conflicts by declaration order resulting in the following: 
 ```
 _Lae3eafcf842016833530caebe7755167b0866b5ac96416b45848c6fc6d65c58f::CounterApp.prototype.____constructor::self::0
 _Lae3eafcf842016833530caebe7755167b0866b5ac96416b45848c6fc6d65c58f::CounterApp.prototype.build::self::0    
@@ -163,7 +163,7 @@ For anonymous closures, `ts2hc` simply names them "anonymous_closure". In order 
 ```
 _Lae3eafcf842016833530caebe7755167b0866b5ac96416b45848c6fc6d65c58f::CounterApp.prototype.build::self::0::anonymous_closure::0
 ```
-This form encodes enough information to uniquely identify a function. `ts2hc` will join each functions mangled name with information like the line/column numbers in the original Typescript file, the line/column numbers in the Lua module the original Typescript file was lowered into, the line/column numbers the function ended up in in the final Lua bundle and other information into a single debug symbol. These debug symbols are what power function maps, provide readable stack traces as well as hot-reload. 
+This form encodes enough information to uniquely identify a function. `ts2hc` will join each functions mangled name with information like the line/column numbers in the original TypeScript file, the line/column numbers in the Lua module the original TypeScript file was lowered into, the line/column numbers the function ended up in in the final Lua bundle and other information into a single debug symbol. These debug symbols are what power function maps, provide readable stack traces as well as hot-reload. 
 
 ## Runtime
 Common Flutter Runtime (CFR) is a blanket term given to the Lua 5.2 virtual machine, binding system and other libraries at the core of Hydro-SDK's runtime environment. Users generally don't interact with the CFR directly, but rather through widgets like `RunComponent` and `RunComponentFromFile`.
@@ -297,6 +297,6 @@ Dart stacktrace follows:
 #4      Closure.dispatch   package:hydro_sdk/…/vm/closure.dart:69
 ...
 ```
-This error is the result of `Colors.blue.swatch` being uninitialized. Recall the example Lua module output above. Imported symbols are assigned to the value of calls to `require`. The `build` method now closes over symbols that are uninitialized (the newly imported symbols). This is unfortunately an artifact of how Typescript modules are represented when lowered. The result is that referencing newly imported symbols in a hot-reloaded function will usually trigger an exception.
+This error is the result of `Colors.blue.swatch` being uninitialized. Recall the example Lua module output above. Imported symbols are assigned to the value of calls to `require`. The `build` method now closes over symbols that are uninitialized (the newly imported symbols). This is unfortunately an artifact of how TypeScript modules are represented when lowered. The result is that referencing newly imported symbols in a hot-reloaded function will usually trigger an exception.
 
 Hot-reload in Hydro-SDK is implemented purely in terms of Lua. Support for hot-reloading other programming languages (like Haxe and C#) in Hydro-SDK should not suffer from this same limitation (though will probably come with their own challenges and limitations). 

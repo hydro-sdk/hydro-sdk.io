@@ -8,7 +8,7 @@ author_image_url: https://avatars.githubusercontent.com/u/18079458?s=400&v=4
 tags: [flutter, typescript, react-native]
 ---
 
-Adventures in automatically binding Dart to Typescript.
+Adventures in automatically binding Dart to TypeScript.
 
 <!--truncate-->
 
@@ -23,9 +23,9 @@ It aims to do that by:
 
 I wrote previously about the past and future of [Hydro-SDK](https://github.com/hydro-sdk/hydro-sdk) [here](https://chgibb.github.io/one-year-of-hydro-sdk/). 
 
-Structured Wrapper and Interface generator for Dart (SWID) is a component of Hydro-SDK supporting goals 1 and 4. SWID takes as input a Dart package (like `package:flutter`) and produces as output Typescript files representing the input Dart package's public API and Dart files to allow for glueing Typescript code written against that API together into a host app that can be run on Hydro-SDK's Common Flutter Runtime (CFR). This process is referred to as "language projection". 
+Structured Wrapper and Interface generator for Dart (SWID) is a component of Hydro-SDK supporting goals 1 and 4. SWID takes as input a Dart package (like `package:flutter`) and produces as output TypeScript files representing the input Dart package's public API and Dart files to allow for glueing TypeScript code written against that API together into a host app that can be run on Hydro-SDK's Common Flutter Runtime (CFR). This process is referred to as "language projection". 
 
-Representing Dart constructs in Typescript has come with many challenges. The most interesting so far has been Dart's [`factory` constructors](https://dart.dev/guides/language/language-tour#factory-constructors). Consider the `Iterable` class from `dart:core`:
+Representing Dart constructs in TypeScript has come with many challenges. The most interesting so far has been Dart's [`factory` constructors](https://dart.dev/guides/language/language-tour#factory-constructors). Consider the `Iterable` class from `dart:core`:
 
 ```dart
 //abridged for readability
@@ -41,7 +41,7 @@ The `empty` factory allows consumers to write code like the following:
 Iterable<MyType> myEmptyIterable = Iterable<MyType>.empty();
 ```
 
-Factory constructors are nothing new. While Typescript doesn't have direct support at the language level as Dart does, the same syntax for consumers can be had by the following class:
+Factory constructors are nothing new. While TypeScript doesn't have direct support at the language level as Dart does, the same syntax for consumers can be had by the following class:
 ```typescript
 class Iterable<E> {
     public constructor();
@@ -49,19 +49,19 @@ class Iterable<E> {
     public static empty(): Iterable<E>;
 }
 ```
- Which would enable consumers to call the `empty` method from Typescript as the following:
+ Which would enable consumers to call the `empty` method from TypeScript as the following:
 
  ```typescript
  let myEmptyIterable: Iterable<MyType> = Iterable.empty();
  ```
 
- It would, except the definition of `Iterable.empty` in our Typescript `Iterable` class above is actually invalid. The Typescript compiler tells us that `Static members cannot reference class type parameters.(2302)`. There is a fairly lengthy discussion on why the TS2302 error exists and why this is the case over on the Typescript repo [here](https://github.com/microsoft/TypeScript/issues/32211) which is out of scope for this post. The jist of the problem is that our `empty` method is trying to reference the type parameter `E` which is defined on the class. 
+ It would, except the definition of `Iterable.empty` in our TypeScript `Iterable` class above is actually invalid. The TypeScript compiler tells us that `Static members cannot reference class type parameters.(2302)`. There is a fairly lengthy discussion on why the TS2302 error exists and why this is the case over on the TypeScript repo [here](https://github.com/microsoft/TypeScript/issues/32211) which is out of scope for this post. The jist of the problem is that our `empty` method is trying to reference the type parameter `E` which is defined on the class. 
 
-SWID is structured as a frontend which takes in Dart source code, producing an intermediate representation (IR). This IR is then passed onto the Typescript backend to produce Typescript source code. SWID IR closely mirrors an abstract syntax tree (AST) of the input Dart code. The `empty` `factory` constructor in the original `Iterable` class defines no type parameters of its own and makes references to `E` defined on the class and therefore so does the IR and the output Typescript. From a purely code generation perspective, our Typescript `Iterable` class is perfect. From a perspective of semantics preservation from our input language (and simply a correctness perspective), this is obviously far from perfect.
+SWID is structured as a frontend which takes in Dart source code, producing an intermediate representation (IR). This IR is then passed onto the TypeScript backend to produce TypeScript source code. SWID IR closely mirrors an abstract syntax tree (AST) of the input Dart code. The `empty` `factory` constructor in the original `Iterable` class defines no type parameters of its own and makes references to `E` defined on the class and therefore so does the IR and the output TypeScript. From a purely code generation perspective, our TypeScript `Iterable` class is perfect. From a perspective of semantics preservation from our input language (and simply a correctness perspective), this is obviously far from perfect.
 
 In SWID IR, the declaration of a generic type is said to be a type formal while uses of that generic are said to be type parameters. In SWID parlance, the `Iterable` class declares a type formal `E` while `empty` has a type parameter `E`.
 
-In order to stop the Typescript backend from producing broken code in the face of patterns like `Iterable`, a type propagation pass was introduced prior to sending IR off to be turned into Typescript. The type propagation pass is responsible for rewriting IR in order to satisfy type parameters that are unsatisfied. 
+In order to stop the TypeScript backend from producing broken code in the face of patterns like `Iterable`, a type propagation pass was introduced prior to sending IR off to be turned into TypeScript. The type propagation pass is responsible for rewriting IR in order to satisfy type parameters that are unsatisfied. 
 
 In SWID IR, a type formal closure defines all of the type formals that are in scope for a particular IR node. A type parameter is said to be unsatisfied if there is no type formal in it's type formal closure that matches it. The extent to which a particular IR node closes over the type formals of its parent nodes depends on the position of the IR node.
 
@@ -86,6 +86,6 @@ With consumers able to use it like the following:
 
  The end result for consumers is having to shift where they ordinarily write their generics when calling `factory` constructors.
 
- The type propagation pass itself can be found [here](https://github.com/hydro-sdk/hydro-sdk/blob/0.0.1-nightly.99/lib/swid/ir/frontend/dart/util/propagateUnsatisfiedTypeParameters.dart). Tests for satisfying type parameters and propagating formals can be found [here](https://github.com/hydro-sdk/hydro-sdk/blob/0.0.1-nightly.99/test/swid/typeFormals/unsatisfiedTypeFormals_test.dart). The extent of type formal closures can be controlled by the `SwidClassTypeFormalClosureKind` `enum`. SWID's Typescript backend uses `SwidClassTypeFormalClosureKind.kNoCloseOverTypeFormalsInStaticMembers` for propagation. Other options exist to preserve Dart's semantics should a future SWID backend need to.
+ The type propagation pass itself can be found [here](https://github.com/hydro-sdk/hydro-sdk/blob/0.0.1-nightly.99/lib/swid/ir/frontend/dart/util/propagateUnsatisfiedTypeParameters.dart). Tests for satisfying type parameters and propagating formals can be found [here](https://github.com/hydro-sdk/hydro-sdk/blob/0.0.1-nightly.99/test/swid/typeFormals/unsatisfiedTypeFormals_test.dart). The extent of type formal closures can be controlled by the `SwidClassTypeFormalClosureKind` `enum`. SWID's TypeScript backend uses `SwidClassTypeFormalClosureKind.kNoCloseOverTypeFormalsInStaticMembers` for propagation. Other options exist to preserve Dart's semantics should a future SWID backend need to.
 
- Hopefully this problem and its solution was as fun to read about as it was to discover and solve. Hydro-SDK is an endless fractal of problems like this. Hopefully I'll be able to make "Adventures in automatically binding Dart to Typescript" a series of posts.
+ Hopefully this problem and its solution was as fun to read about as it was to discover and solve. Hydro-SDK is an endless fractal of problems like this. Hopefully I'll be able to make "Adventures in automatically binding Dart to TypeScript" a series of posts.

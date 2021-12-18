@@ -1,7 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Hydro-SDK',
-  tagline: 'Author Flutter experiences in Typescript. No native bridge, no V8. Just Dart. From runtime to virtual machine.',
+  tagline: 'Author Flutter experiences in TypeScript. No native bridge, no V8. Just Dart. From runtime to virtual machine.',
   url: 'https://hydro-sdk.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',

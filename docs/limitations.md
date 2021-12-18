@@ -6,7 +6,7 @@ sidebar_position: 5
 
 Some known limitations of Hydro-SDK
 
-## Typescript
+## TypeScript
 
 ### Toolchain
 The compiler toolchain needs to control `tsconfig` options in order to control compilation for different build profiles. `strict` is always turned on by default.

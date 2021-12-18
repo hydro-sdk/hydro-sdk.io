@@ -33,14 +33,14 @@
         <id>expressing-inexpressible-constant-values</id>
         <link href="https://hydro-sdk.github.io/blog/expressing-inexpressible-constant-values"/>
         <updated>2021-04-03T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Adventures in automatically binding Dart to Typescript.]]></summary>
+        <summary type="html"><![CDATA[Adventures in automatically binding Dart to TypeScript.]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[Closing Over Type Formals, Satisfying Type Parameters]]></title>
         <id>closing-over-type-formals-satisying-type-parameters</id>
         <link href="https://hydro-sdk.github.io/blog/closing-over-type-formals-satisying-type-parameters"/>
         <updated>2021-02-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Adventures in automatically binding Dart to Typescript.]]></summary>
+        <summary type="html"><![CDATA[Adventures in automatically binding Dart to TypeScript.]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[One Year of Hydro-SDK]]></title>

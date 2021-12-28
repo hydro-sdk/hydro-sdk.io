@@ -8,7 +8,13 @@ author_image_url: https://avatars.githubusercontent.com/u/18079458?s=400&v=4
 tags: [flutter, typescript, react-native]
 ---
 
-hydro-sdk/hydro-sdk Notes:
+
+10,875 commits across hydro-sdk repositories
+1,616 PRs merged across hydro-sdk
+    
+
+
+Raw hydro-sdk/hydro-sdk Notes:
 136 issues closed
     40 for dart:ui
     7 for dart:collection
@@ -49,13 +55,21 @@ Established hydro-sdk.io
 SWID grew from 26,509 LOC and 3,692 LOC of tests to 95,829 and 33,594 LOC of tests
 
 hydro-sdk/animated-list-app:
+1,714 commits
 194 bump PRs from waveform-bot
 
 hydro-sdk/hotel-booking-app:
+1,915 commits
 228 bump PRs from waveform-bot
 
 hydro-sdk/basic-appbar-app
+1,875 commits
 225 bump PRs from waveform-bot
 
 hydro-sdk/counter-app
+2,162 commits
 358 bump PRs from waveform-bot
+
+hydro-sdk/codepush-tests
+1,487 commits
+229 bump PRs from waveform-bot

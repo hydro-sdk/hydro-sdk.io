@@ -153,3 +153,283 @@ class "dart:core"::List {
     };
 }
 ```
+
+## Errors
+While Swidi's grammar (especially around constants) is relatively permissive, not every possible declaration makes sense. The below are validation errors that may be encountered when writing Swidi declarations.
+
+### Empty annotation on declaration (E1)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Number used as an annotation (E2)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ 1 ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### String used as an annotation (E3)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ @"1" ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Annotations can't have named parameters (E4)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ ignoreTransform(bar: @"1" ) ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Annotations must have a positional parameter (E5)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ ignoreTransform() ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Annotations must have a single positional parameter (E6)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ ignoreTransform(1,2) ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Number used as a parameter in an annotation (E7)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ ignoreTransform(1) ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Function used as a parameter in an annotation(E8)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ ignoreTransform(foo()) ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Map used as a parameter in an annotation (E9)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ ignoreTransform({
+      @"foo" : @"bar",
+    }) ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Map used as an annotation (E10)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ {
+      @"foo" : @"bar",
+    } ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Number used as a method short hand override (E11)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> 10;
+  }
+```
+### String used as a method short hand override (E12)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> @"10";
+  }
+```
+### Function used as a method short hand override (E13)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> bar();
+  }
+```
+### Number used as a key in a method short hand override (E14)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> {
+      1 : @"bar",
+    };
+  }
+```
+### Function used as a key in a method short hand override (E15)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> {
+      foo() : @"bar",
+    };
+  }
+```
+### Map used as a key in a method short hand override (E16)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> {
+      {
+        1 : 2,
+      } : @"bar",
+    };
+  }
+```
+### Key is not a valid short hand override key (E17)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> {
+      @"foo" : @"bar",
+    };
+  }
+```
+### Invalid annotation name (E18)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ foo(@"bar") ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Invalid annotation parameter (E19)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ ignoreTransform(@"1") ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Boolean used as an annotation (E20)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ true ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Boolean used as a parameter in an annotation (E21)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    [[ ignoreTransform(true) ]]
+    void::void foo(
+      "dart:core"::class::int bar, {
+        "dart:core"::class::int baz,
+        "dart:core"::class::int? qux,
+    });
+  }
+```
+### Boolean used as a method short hand override (E22)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> true;
+  }
+```
+### Boolean used as a key in a method short hand override (E23)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> {
+      true : @"bar",
+    };
+  }
+```
+### Number used as a value in a method short hand override (E24)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> {
+      @"tsClassMethodDeclaration" : 123,
+    };
+  }
+```
+### Function used as a value in a method short hand override (E25)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> {
+      @"tsClassMethodDeclaration" : bar(),
+    };
+  }
+```
+### Map used as a value in a method short hand override (E26)
+This error can be encountered in Swidi code like the following:
+```dart
+class "package:flutter/src/widgets/icon_data.dart"::IconData {
+    void::void foo() -> {
+      @"tsClassMethodDeclaration" : {
+        123: 321,
+      },
+    };
+  }
+```

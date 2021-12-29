@@ -16,6 +16,27 @@ Taking a given piece of code in a given source language, binding it to (making i
 
 SWIG relies heavily on "SWIG interface files" to drive code generation. Xlang similarly relies on "Windows Metadata" files. The intent in both cases is to describe the API that is to be bound and projected. SWID aims to remove this boilerplace as much as possible and drive its code generation from Dart source code.
 
+## Intermediate Representation (IR)
+SWID maintains its own IR. [SWID IR](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/ir) closely mirrors a Dart abstract syntax tree (AST). The important caveat is that SWID IR does not fully represent the semantics of the Dart language. Getters, setters and operator overloads are not specially represented in SWID IR. SWID IR also does not explicitly represent Dart libraries or packages. 
+
+SWID IR is the primitive upon which all analyses, transformations and code generation are performed.
+
+## Frontends
+SWID frontends are responsible for producing SWID IR. 
+
+### Dart Frontend
+SWID's [Dart frontend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/frontend/dart) takes a Dart package and produces SWID IR.
+
+### Swidi Frontend
+Swidi is a small, declarative language implemented by SWID and consumed by a dedicated [Swidi frontend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/frontend/swidi) in SWID.
+
+## Backends
+SWID backends are responsible for producing translation units which will be written to disk as code files.
+
+SWID's [Dart backend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/backend/dart) is responsible for producing Dart code that can be loaded into CFR to provide bindings for a given Dart package.
+
+SWID's [TypeScript backend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/backend/ts) is responsible for producing TypeScript code that accurately projects the given Dart package and works with the associated Dart binding code to allow consumers to access, allocate and extend classes from the given Dart package.
+
 ## Binding System Overview
 In addition to providing far superior developer ergonomics over hand writing bindings for Dart packages, SWID also presents an opportunity to formalize and standardize binding schemes and uses cases.
 
@@ -33,22 +54,3 @@ A "runtime managed class" is a term used to describe an instance of a class that
 Each "runtime managed class declaration" provides overrides for every method, getter and setter of `T` that redirect to its Lua table. This allows Dart code to opaquely access methods of the "runtime managed class" which are actually implemented in CFR.
  
 Unlike a "virtual machine managed class", "runtime managed classes" Lua table redirections are given in terms `_dart_method` where `method` is the name of the method from `T` being bound. In order to make the given projection natural for consumers, language projections are expected to provide `method` declarations that redirect by default to `_dart_method`. This allows target language consumers to extend projected classes and provide method overrides implemented in terms of CFR.
-
-## Intermediate Representation (IR)
-SWID maintains its own IR. [SWID IR](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/ir) closely mirrors a Dart abstract syntax tree (AST). The important caveat is that SWID IR does not fully represent the semantics of the Dart language. Getters, setters and operator overloads are not specially represented in SWID IR. SWID IR also does not explicitly represent Dart libraries or packages. 
-
-SWID IR is the primitive upon which all analyses, transformations and code generation are performed.
-
-## Frontends
-SWID frontends are responsible for producing SWID IR. 
-
-SWID's [Dart frontend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/frontend/dart) takes a Dart package and produces SWID IR.
-
-There is a second (though still experimental) frontend called [SWIDI](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/frontend/swidi) for producing SWID IR from SWID interface (or SWIDI) files.
-
-## Backends
-SWID backends are responsible for producing translation units which will be written to disk as code files.
-
-SWID's [Dart backend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/backend/dart) is responsible for producing Dart code that can be loaded into CFR to provide bindings for a given Dart package.
-
-SWID's [TypeScript backend](https://github.com/hydro-sdk/hydro-sdk/tree/master/lib/swid/backend/ts) is responsible for producing TypeScript code that accurately projects the given Dart package and works with the associated Dart binding code to allow consumers to access, allocate and extend classes from the given Dart package.

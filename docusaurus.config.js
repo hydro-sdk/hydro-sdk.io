@@ -10,7 +10,10 @@ module.exports = {
   organizationName: 'hydro-sdk', // Usually your GitHub org/user name.
   projectName: 'hydro-sdk.io', // Usually your repo name.
   themeConfig: {
-    colorMode:{
+    prism: {
+      additionalLanguages: ['dart'],
+    },
+    colorMode: {
       defaultMode: "dark",
       disableSwitch: true,
     },
@@ -38,7 +41,7 @@ module.exports = {
           position: 'left',
           label: 'Registry',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/hydro-sdk',
           label: 'GitHub',
@@ -106,7 +109,7 @@ module.exports = {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-          'https://github.com/hydro-sdk/hydro-sdk.io/edit/main/',
+            'https://github.com/hydro-sdk/hydro-sdk.io/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

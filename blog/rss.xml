@@ -4,14 +4,14 @@
         <title>Hydro-SDK Blog</title>
         <link>https://hydro-sdk.github.io/blog</link>
         <description>Hydro-SDK Blog</description>
-        <lastBuildDate>Mon, 17 Jan 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 06 Jan 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[Two Years of Hydro-SDK]]></title>
             <link>https://hydro-sdk.github.io/blog/two-years-of-hydro-sdk</link>
             <guid>two-years-of-hydro-sdk</guid>
-            <pubDate>Mon, 17 Jan 2022 00:00:00 GMT</pubDate>
+            <pubDate>Thu, 06 Jan 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[370 releases in 365 days of 2021. Looking ahead to 2022.]]></description>
         </item>
         <item>

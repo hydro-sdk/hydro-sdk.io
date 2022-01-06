@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://hydro-sdk.github.io/blog</id>
     <title>Hydro-SDK Blog</title>
-    <updated>2022-01-17T00:00:00.000Z</updated>
+    <updated>2022-01-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://hydro-sdk.github.io/blog"/>
     <subtitle>Hydro-SDK Blog</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[Two Years of Hydro-SDK]]></title>
         <id>two-years-of-hydro-sdk</id>
         <link href="https://hydro-sdk.github.io/blog/two-years-of-hydro-sdk"/>
-        <updated>2022-01-17T00:00:00.000Z</updated>
+        <updated>2022-01-06T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[370 releases in 365 days of 2021. Looking ahead to 2022.]]></summary>
     </entry>
     <entry>
